@@ -37,10 +37,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./Auth/Signup";
 import Login from "./Auth/Login";
 import Home from "./pages/Home";
-import AdminDashboard from "./Admin/adminDashboard";
+import AdminDashboard from "./Admin/AdminDashboard";
 import UserDashboard from "./User/UserDashboard";
 import AdminAddTask from "./Admin/AdminAddTask";
-import ShowTasks from "./Admin/showTasks";
+import ShowTasks from "./Admin/ShowTasks";
 import AdminLayout from "./Admin/AdminLayout";
 import ProtectedRoute from "./pages/ProtectedRoute"; // 🔥 import
 
