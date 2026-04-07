@@ -17,7 +17,7 @@ const UserDashboard = () => {
       // const response = await axios.get(
       //   `http://localhost:5000/api/task/showDatabyId/${user.id}`,
       // );
-      const response = await api.get(`/task/showDatabyId/${user.id}`);
+      const response = await api.get(`/api/task/showDatabyId/${user.id}`);
       setMydata(response.data);
     } catch (err) {
       console.log(err);

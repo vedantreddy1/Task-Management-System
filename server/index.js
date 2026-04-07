@@ -11,9 +11,20 @@ app.use(express.json());
 app.use(cors());
 
 // OR allow only your frontend domain
+const allowedOrigins = [
+  "https://task-management-system-q6y1-git-main-vedants-projects-8304a44c.vercel.app",
+  "https://task-management-system-q6y1-l94ykir9m-vedants-projects-8304a44c.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "*",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   }),
 );
 
