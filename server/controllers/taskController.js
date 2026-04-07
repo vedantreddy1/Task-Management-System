@@ -1,37 +1,39 @@
 const TaskModel = require("../models/taskModel");
-const  nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 const authModel = require("../models/authModel");
 const taskModel = require("../models/taskModel");
-
 
 const AssignTask = async (req, res) => {
   const { title, description, status, assignTo, createdBy, updatedBy } =
     req.body;
 
+  const findUser = await authModel.findById(createdBy);
+  const findtoSendUser = await authModel.findById(assignTo);
+  console.log(findUser);
+  console.log(findtoSendUser);
+  const response = await TaskModel.create({
+    title: title,
+    description: description,
+    status: status,
+    assignTo: assignTo,
+    createdBy: createdBy,
+  });
 
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "vedantreddy2000@gmail.com",
+        pass: "kkxwkuzgayfrrtlc", // Gmail App Password
+      },
+    });
 
+    const mailOptions = {
+      from: findUser.email,
+      to: findtoSendUser.email,
+      subject: `${title} 🚀`,
 
-const findUser = await authModel.findById(createdBy)
-const findtoSendUser = await authModel.findById(assignTo);
-console.log(findUser)
-console.log(findtoSendUser);
-
-    try {
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "vedantreddy2000@gmail.com",
-          pass: "kkxwkuzgayfrrtlc", // Gmail App Password
-        },
-      });
-
-      
-       const mailOptions = {
-  from: findUser.email,
-  to: findtoSendUser.email,
-  subject: `${title} 🚀`,
-
-  html: `
+      html: `
     <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:20px;">
       
       <div style="max-width:600px; margin:auto; background:white; border-radius:10px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
@@ -77,77 +79,60 @@ console.log(findtoSendUser);
 
     </div>
   `,
-}
-   
+    };
 
-      const info = await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
 
-      console.log(info);
+    console.log(info);
 
-      return res.status(200).json({
-        message: "Mail sent successfully",
-      });
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json({
-        message: "Error sending mail",
-      });
-    }
-
-
-
-
-
-  const response = await TaskModel.create({
-    title: title,
-    description: description,
-    status: status,
-    assignTo: assignTo,
-    createdBy: createdBy,
-  });
+    return res.status(200).json({
+      message: "Task assigned successfully",
+      task,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error sending mail",
+    });
+  }
 
   return res.send(response);
 };
 
 const showTask = async (req, res) => {
-  const response = await TaskModel.find().sort({createdAt:-1})
+  const response = await TaskModel.find()
+    .sort({ createdAt: -1 })
     .populate("createdBy")
     .populate("assignTo");
 
   res.send(response);
 };
 
-
-
-
-const showTaskById=async(req,res)=>{
-
-  const {id} = req.params;
+const showTaskById = async (req, res) => {
+  const { id } = req.params;
 
   const response = await taskModel
     .find({ assignTo: id })
     .populate("assignTo")
     .populate("createdBy");
-    res.send(response);
+  res.send(response);
+};
 
-}
+const updateTaskStatus = async (req, res) => {
+  const { status } = req.body;
+  const { id } = req.params;
+  console.log(status);
 
-const updateTaskStatus=async(req,res)=>{
+  console.log(id);
 
-  const {status} = req.body
-const { id } = req.params;
-console.log(status)
-
-  console.log(id)
-
-  const response = await taskModel.findByIdAndUpdate(id,{status:status},{new:true})
+  const response = await taskModel.findByIdAndUpdate(
+    id,
+    { status: status },
+    { new: true },
+  );
 
   res.send(response);
-
-
-
-}
-
+};
 
 module.exports = {
   AssignTask,
