@@ -103,7 +103,7 @@ const AdminDashboard = () => {
   const loadData = async () => {
     try {
       // const api = `http://localhost:5000/api/auth/showData`;
-      const response = await api.get("/auth/showData");
+      const response = await api.get("/api/auth/showData");
       setMyData(response.data);
     } catch (err) {
       console.log(err);

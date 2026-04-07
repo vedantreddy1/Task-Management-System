@@ -39,7 +39,7 @@ const UserDashboard = () => {
       //     status,
       //   },
       // );
-      await api.put(`/task/updateTask/${selectedTaskId}`, {
+      await api.put(`/api/task/updateTask/${selectedTaskId}`, {
         status,
       });
 

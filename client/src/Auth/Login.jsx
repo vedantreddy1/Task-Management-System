@@ -27,7 +27,7 @@ const Login = () => {
 
       try {
         // const api = "http://localhost:5000/api/auth/login";
-        const response = await api.post("auth/login", form);
+        const response = await api.post("/api/auth/login", form);
 
         console.log("LOGIN RESPONSE 👉", response.data); // 👈 ADD THIS
 

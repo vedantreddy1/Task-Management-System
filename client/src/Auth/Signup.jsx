@@ -25,7 +25,7 @@ const Signup = () => {
     e.preventDefault();
 
     // const api = "http://localhost:5000/api/auth/register";
-    const response = await api.post("/auth/register", form);
+    const response = await api.post("/api/auth/register", form);
     console.log(response.data)
     navigate("/login")
   };

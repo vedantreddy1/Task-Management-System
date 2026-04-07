@@ -26,7 +26,7 @@ const AdminAddTask = () => {
     const user = JSON.parse(localStorage.getItem("User"));
 
     // const api = `http://localhost:5000/api/auth/showData`;
-    const response = await api.get("/auth/showData");
+    const response = await api.get("/api/auth/showData");
     // const lastuser = response.data[response.data.length - 1];
     console.log(user.id);
     // console.log(response.data)

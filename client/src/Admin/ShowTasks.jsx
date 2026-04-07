@@ -9,7 +9,7 @@ const ShowTasks = () => {
     const loadData = async()=>{
 
         // const api = "http://localhost:5000/api/task/showData";
-        const response = await api.get("/task/showData");
+        const response = await api.get("/api/task/showData");
 
         console.log(response.data)
         setMydata(response.data)
