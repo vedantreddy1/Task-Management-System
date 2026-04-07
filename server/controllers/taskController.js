@@ -2,7 +2,7 @@ const TaskModel = require("../models/taskModel");
 const nodemailer = require("nodemailer");
 const authModel = require("../models/authModel");
 const taskModel = require("../models/taskModel");
-const resend = require("resend");
+const { Resend } = require("resend");
 
 const AssignTask = async (req, res) => {
   const { title, description, status, assignTo, createdBy, updatedBy } =
@@ -29,7 +29,7 @@ const AssignTask = async (req, res) => {
     //   },
     // });
 
-    const resend = new resend.Resend("123456");
+    const resend = new Resend("123456");
 
     // const mailOptions = {
 

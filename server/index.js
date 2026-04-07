@@ -21,6 +21,7 @@ app.use(
 const allowedOrigins = [
   "https://task-management-system-q6y1-git-main-vedants-projects-8304a44c.vercel.app",
   "https://task-management-system-q6y1-l94ykir9m-vedants-projects-8304a44c.vercel.app",
+  
 ];
 
 app.use(
