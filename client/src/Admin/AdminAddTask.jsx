@@ -45,7 +45,7 @@ const AdminAddTask = () => {
 
     // const api = `http://localhost:5000/api/task/assignTask/${id}`;
     // const response = await api.post(api, form);
-    const response = await api.post(`/task/assignTask/${id}`, form);
+    const response = await api.post(`/api/task/assignTask/${id}`, form);
   };
 
   return (
