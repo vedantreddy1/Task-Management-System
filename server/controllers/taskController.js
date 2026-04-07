@@ -29,7 +29,7 @@ const AssignTask = async (req, res) => {
     //   },
     // });
 
-    const resend = new Resend("123456");
+    const resend = new resend.Resend("123456");
 
     // const mailOptions = {
 
