@@ -110,7 +110,7 @@ console.log(findtoSendUser);
 };
 
 const showTask = async (req, res) => {
-  const response = await TaskModel.find()
+  const response = await TaskModel.find().sort({createdAt:-1})
     .populate("createdBy")
     .populate("assignTo");
 

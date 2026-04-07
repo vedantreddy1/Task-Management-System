@@ -12,6 +12,6 @@ const taskSchema = new mongoose.Schema({
   assignTo: { type: mongoose.Schema.Types.ObjectId, ref: "Signup" },
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "Signup" },
   updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: "Signup" },
-});
+},{timestamps:true});
 
 module.exports = mongoose.model("Tasks",taskSchema)

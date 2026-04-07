@@ -12,19 +12,19 @@ const Home = () => {
 
   useEffect(()=>{
  const loadData = async () => {
-   localStorage.getItem("token");
+   const token = localStorage.getItem("token");
 
 
-     const user = JSON.parse(localStorage.getItem("user"));
+     const user = JSON.parse(localStorage.getItem("User"));
 
-     if (!user) {
+     if (!user||!token) {
        navigate("/login");
        return;
      }
 
    const api = "http://localhost:5000/api/auth/showData";
    const response = await axios.get(api);
-const lastuser =response.data[ response.data.length - 1];
+   const lastuser =response.data[response.data.length - 1];
    console.log(lastuser);
 
   //  const api2 = `http://localhost:5000/api/auth/showData/${response.data._id}`;

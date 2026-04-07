@@ -82,7 +82,7 @@ const Login = async (req, res) => {
 };
 
 const ShowUserData = async (req, res) => {
-  const response = await authModel.find();
+  const response = await authModel.find().sort({createdAt:-1});
 
   res.send(response);
 };

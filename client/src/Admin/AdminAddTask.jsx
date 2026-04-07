@@ -22,15 +22,18 @@ const AdminAddTask = () => {
   };
 
   const loadData = async () => {
+
+    const user  = JSON.parse(localStorage.getItem("User"))
+
     const api = `http://localhost:5000/api/auth/showData`;
     const response = await axios.get(api);
-    const lastuser = response.data[response.data.length - 1];
-    console.log(lastuser._id);
+    // const lastuser = response.data[response.data.length - 1];
+    console.log(user.id);
     // console.log(response.data)
-    setForm({ ...form, createdBy: lastuser._id, assignTo: id });
+    setForm({ ...form, createdBy: user.id, assignTo: id });
     console.log(form);
 
-    return lastuser._id;
+    return user.id;
   };
 
   useEffect(() => {
