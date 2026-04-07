@@ -13,13 +13,10 @@ app.use(cors());
 // .connect("mongodb://localhost:27017/taskManagement")
 // mongoose.connect(process.env.MONGO_URI).then(() => console.log("DB Connected"));
 // app.use(helmet());
-mongoose
-  .connect("mongodb://localhost:27017/taskManagement")
-  .then(() => console.log("DB Connected"));
+mongoose.connect(process.env.MONGO_URI).then(() => console.log("DB Connected"));
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/task", require("./routes/taskRoute"));
 
+const PORT = process.env.PORT || 5000;
 
-const PORT = process.env.PORT||5000 ;
-
-app.listen(PORT, () => console.log("Server running",PORT));
+app.listen(PORT, () => console.log("Server running", PORT));
