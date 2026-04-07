@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import api from "../api";
 
 const AdminAddTask = () => {
   const { id } = useParams();
@@ -22,11 +23,10 @@ const AdminAddTask = () => {
   };
 
   const loadData = async () => {
+    const user = JSON.parse(localStorage.getItem("User"));
 
-    const user  = JSON.parse(localStorage.getItem("User"))
-
-    const api = `http://localhost:5000/api/auth/showData`;
-    const response = await axios.get(api);
+    // const api = `http://localhost:5000/api/auth/showData`;
+    const response = await api.get("/auth/showData");
     // const lastuser = response.data[response.data.length - 1];
     console.log(user.id);
     // console.log(response.data)
@@ -43,8 +43,9 @@ const AdminAddTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const api = `http://localhost:5000/api/task/assignTask/${id}`;
-    const response = await axios.post(api, form);
+    // const api = `http://localhost:5000/api/task/assignTask/${id}`;
+    // const response = await api.post(api, form);
+    const response = await api.post(`/task/assignTask/${id}`, form);
   };
 
   return (

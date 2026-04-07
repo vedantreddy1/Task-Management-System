@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const UserDashboard = () => {
   const [mydata, setMydata] = useState([]);
@@ -13,9 +14,10 @@ const UserDashboard = () => {
     if (!user) return;
 
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/task/showDatabyId/${user.id}`,
-      );
+      // const response = await axios.get(
+      //   `http://localhost:5000/api/task/showDatabyId/${user.id}`,
+      // );
+      const response = await api.get(`/task/showDatabyId/${user.id}`);
       setMydata(response.data);
     } catch (err) {
       console.log(err);
@@ -31,12 +33,15 @@ const UserDashboard = () => {
     if (!status) return alert("Please select a status");
 
     try {
-      await axios.put(
-        `http://localhost:5000/api/task/updateTask/${selectedTaskId}`,
-        {
-          status,
-        },
-      );
+      // await axios.put(
+      //   `http://localhost:5000/api/task/updateTask/${selectedTaskId}`,
+      //   {
+      //     status,
+      //   },
+      // );
+      await api.put(`/task/updateTask/${selectedTaskId}`, {
+        status,
+      });
 
       setShowForm(false);
       setStatus("");
@@ -55,7 +60,7 @@ const UserDashboard = () => {
   const handleLogout = () => {
     // optional (if using auth later)
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem("User");
 
     // Optional: show alert
     alert("You have been logged out!");

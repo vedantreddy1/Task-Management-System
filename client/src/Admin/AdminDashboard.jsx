@@ -93,6 +93,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import api from "../api";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -101,8 +102,8 @@ const AdminDashboard = () => {
 
   const loadData = async () => {
     try {
-      const api = `http://localhost:5000/api/auth/showData`;
-      const response = await axios.get(api);
+      // const api = `http://localhost:5000/api/auth/showData`;
+      const response = await api.get("/auth/showData");
       setMyData(response.data);
     } catch (err) {
       console.log(err);

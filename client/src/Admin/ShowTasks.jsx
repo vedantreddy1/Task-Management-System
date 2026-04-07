@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import api from '../api';
 
 const ShowTasks = () => {
 
@@ -7,8 +8,8 @@ const ShowTasks = () => {
 
     const loadData = async()=>{
 
-        const api = "http://localhost:5000/api/task/showData";
-        const response = await axios.get(api);
+        // const api = "http://localhost:5000/api/task/showData";
+        const response = await api.get("/task/showData");
 
         console.log(response.data)
         setMydata(response.data)

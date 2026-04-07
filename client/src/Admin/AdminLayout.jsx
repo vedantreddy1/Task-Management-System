@@ -7,7 +7,7 @@ const AdminLayout = () => {
   const handleLogout = () => {
     // optional (if using auth later)
   localStorage.removeItem("token");
-  localStorage.removeItem("user");
+  localStorage.removeItem("User");
 
   // Optional: show alert
   alert("You have been logged out!");

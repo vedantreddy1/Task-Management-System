@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,8 +23,8 @@ const Home = () => {
        return;
      }
 
-   const api = "http://localhost:5000/api/auth/showData";
-   const response = await axios.get(api);
+  //  const api = "http://localhost:5000/api/auth/showData";
+   const response = await api.get("/auth/showData");
    const lastuser =response.data[response.data.length - 1];
    console.log(lastuser);
 
