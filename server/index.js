@@ -13,10 +13,7 @@ app.use(cors());
 // OR allow only your frontend domain
 app.use(
   cors({
-    origin:
-      "https://task-management-system-q6y1-git-main-vedants-projects-8304a44c.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    origin: "*",
   }),
 );
 
