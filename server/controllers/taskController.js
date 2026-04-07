@@ -2,6 +2,7 @@ const TaskModel = require("../models/taskModel");
 const nodemailer = require("nodemailer");
 const authModel = require("../models/authModel");
 const taskModel = require("../models/taskModel");
+const resend = require("resend");
 
 const AssignTask = async (req, res) => {
   const { title, description, status, assignTo, createdBy, updatedBy } =
@@ -20,15 +21,19 @@ const AssignTask = async (req, res) => {
   });
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "vedantreddy2000@gmail.com",
-        pass: "kkxwkuzgayfrrtlc", // Gmail App Password
-      },
-    });
+    // const transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: "vedantreddy2000@gmail.com",
+    //     pass: "kkxwkuzgayfrrtlc", // Gmail App Password
+    //   },
+    // });
 
-    const mailOptions = {
+    const resend = new Resend("123456");
+
+    // const mailOptions = {
+
+    const data = await resend.emails.send({
       from: findUser.email,
       to: findtoSendUser.email,
       subject: `${title} 🚀`,
@@ -79,15 +84,15 @@ const AssignTask = async (req, res) => {
 
     </div>
   `,
-    };
+    });
 
-    const info = await transporter.sendMail(mailOptions);
+    // const info = await transporter.sendMail(mailOptions);
 
-    console.log(info);
+    console.log(data);
 
     return res.status(200).json({
       message: "Task assigned successfully",
-      task,
+      task: response,
     });
   } catch (error) {
     console.log(error);
