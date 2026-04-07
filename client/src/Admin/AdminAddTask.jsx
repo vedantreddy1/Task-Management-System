@@ -33,6 +33,10 @@ const AdminAddTask = () => {
     setForm({ ...form, createdBy: user.id, assignTo: id });
     console.log(form);
 
+  const token = localStorage.getItem("token");
+
+    alert(token)
+
     return user.id;
   };
 
@@ -52,7 +56,7 @@ const AdminAddTask = () => {
     <div className="container mt-5">
       <div className="card shadow p-4">
         <h3 className="mb-4 text-center">Create Task</h3>
-        <p>Token: {localStorage.getItem("token")}</p>
+        {/* <p>Token: {localStorage.getItem("token")}</p> */}
 
         <form onSubmit={handleSubmit}>
           {/* Title */}
