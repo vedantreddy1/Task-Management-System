@@ -84,12 +84,12 @@ console.log(findtoSendUser);
 
       console.log(info);
 
-      res.status(200).json({
+      return res.status(200).json({
         message: "Mail sent successfully",
       });
     } catch (error) {
       console.log(error);
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error sending mail",
       });
     }
@@ -106,7 +106,7 @@ console.log(findtoSendUser);
     createdBy: createdBy,
   });
 
-  res.send(response);
+  return res.send(response);
 };
 
 const showTask = async (req, res) => {
