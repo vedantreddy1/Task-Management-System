@@ -52,6 +52,7 @@ const AdminAddTask = () => {
     <div className="container mt-5">
       <div className="card shadow p-4">
         <h3 className="mb-4 text-center">Create Task</h3>
+        <p>Token: {localStorage.getItem("token")}</p>
 
         <form onSubmit={handleSubmit}>
           {/* Title */}
